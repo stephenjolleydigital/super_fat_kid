@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/objects/crumbling_platform.gd" id="1"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/objects/crumbling_platform/sfx_crumbling_platform_crumble_01.wav" id="2_crumble"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/objects/crumbling_platform/sfx_crumbling_platform_reform_01.wav" id="3_reform"]
+
+[sub_resource type="RectangleShape2D" id="Rectangle_platform"]
+size = Vector2(64, 16)
+
+[node name="CrumblingPlatform" type="StaticBody2D"]
+texture_filter = 1
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(32, 8)
+shape = SubResource("Rectangle_platform")
+
+[node name="SFX_Crumble" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(32, 8)
+stream = ExtResource("2_crumble")
+volume_db = -12.0
+max_distance = 480.0
+
+[node name="SFX_Reform" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(32, 8)
+stream = ExtResource("3_reform")
+volume_db = -18.0
+max_distance = 480.0

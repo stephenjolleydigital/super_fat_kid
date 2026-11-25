@@ -1,0 +1,143 @@
+[gd_scene load_steps=21 format=3 uid="uid://dfe5j8nw2dyp0"]
+
+[ext_resource type="Script" uid="uid://dsq2kik6k58i0" path="res://scripts/enemies/sewer_snail/sewer_snail_vomit.gd" id="1_snvomit"]
+[ext_resource type="Texture2D" uid="uid://u25nytuyyi0t" path="res://assets/sprites/enemies/sewer_snail/sewer_snail_vomit.png" id="2_snvomit"]
+[ext_resource type="Script" uid="uid://b3f8g2p6c4d1e" path="res://scripts/effects/puddle_bubbles.gd" id="bubbles"]
+[ext_resource type="Script" uid="uid://46ptfo05lgob" path="res://scripts/combat/enemy_knockback.gd" id="enemy_knockback"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv7"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv8"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(1024, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv9"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(1152, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv10"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(1280, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv11"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(1408, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv12"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(1536, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv13"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(1664, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv0"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv1"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv2"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv3"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv4"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv5"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snv6"]
+atlas = ExtResource("2_snvomit")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_snvomit"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv9")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv13")
+}],
+"loop": false,
+"name": &"disappear",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snv6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snvomit"]
+size = Vector2(44, 10)
+
+[node name="SewerSnailVomit" type="Area2D"]
+script = ExtResource("1_snvomit")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_snvomit")
+animation = &"idle"
+offset = Vector2(-29, -45.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_snvomit")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="PuddleBubbles" type="Node2D" parent="."]
+position = Vector2(0, -2)
+script = ExtResource("bubbles")
+body_color = Color(0.52549, 0.572549, 0.0745098, 1)
+highlight_color = Color(0.729412, 0.72549, 0.101961, 1)
+
+[node name="EnemyKnockback" type="Node" parent="."]
+script = ExtResource("enemy_knockback")
+damage_areas = Array[NodePath]([NodePath(".")])

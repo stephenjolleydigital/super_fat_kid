@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cthku0kk4dvoh"]
+
+[ext_resource type="Script" uid="uid://cxsqdmcwnbh25" path="res://scripts/enemies/sewer_slug/sewer_slug_slime.gd" id="1_puddle"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/slime/slime_puddle.png" id="2_puddle"]
+[ext_resource type="Script" path="res://scripts/effects/puddle_bubbles.gd" id="3_bubbles"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puddle"]
+atlas = ExtResource("2_puddle")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_puddle"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puddle")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puddle"]
+size = Vector2(42, 8)
+
+[node name="SlimePuddle" type="Area2D"]
+script = ExtResource("1_puddle")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_puddle")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_puddle")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="PuddleBubbles" type="Node2D" parent="."]
+position = Vector2(-1, 14)
+script = ExtResource("3_bubbles")

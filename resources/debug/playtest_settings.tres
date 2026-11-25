@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlaytestSettings" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/debug/playtest_settings.gd" id="1_settings"]
+[ext_resource type="Resource" path="res://resources/progression/campaign_catalog.tres" id="2_catalog"]
+
+[resource]
+script = ExtResource("1_settings")
+mode = 0
+campaign = ExtResource("2_catalog")

@@ -1,0 +1,117 @@
+[gd_scene load_steps=26 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/objects/TreasureChest.tscn" id="1_chest"]
+[ext_resource type="PackedScene" path="res://scenes/pickups/Pickup_Blaster.tscn" id="2_reward"]
+[ext_resource type="Texture2D" path="res://assets/sprites/objects/chests/treasure_chest_metal_base.png" id="base"]
+[ext_resource type="Texture2D" path="res://assets/sprites/objects/chests/treasure_chest_metal_lid.png" id="lid"]
+
+[sub_resource type="AtlasTexture" id="base_0"]
+atlas = ExtResource("base")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="base_1"]
+atlas = ExtResource("base")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="base_2"]
+atlas = ExtResource("base")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="base_3"]
+atlas = ExtResource("base")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="base_4"]
+atlas = ExtResource("base")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="base_5"]
+atlas = ExtResource("base")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="base_6"]
+atlas = ExtResource("base")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="base_7"]
+atlas = ExtResource("base")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="base_8"]
+atlas = ExtResource("base")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="base_frames"]
+animations = [{"frames": [{"duration": 1.0, "texture": SubResource("base_0")}], "loop": true, "name": &"idle", "speed": 5.0},
+{"frames": [{"duration": 1.0, "texture": SubResource("base_1")}, {"duration": 1.0, "texture": SubResource("base_2")}, {"duration": 1.0, "texture": SubResource("base_3")}, {"duration": 1.0, "texture": SubResource("base_4")}], "loop": false, "name": &"rock", "speed": 4.0},
+{"frames": [{"duration": 1.0, "texture": SubResource("base_5")}, {"duration": 1.0, "texture": SubResource("base_6")}, {"duration": 1.0, "texture": SubResource("base_7")}, {"duration": 1.0, "texture": SubResource("base_8")}], "loop": false, "name": &"open", "speed": 6.0}]
+
+[sub_resource type="AtlasTexture" id="lid_0"]
+atlas = ExtResource("lid")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="lid_1"]
+atlas = ExtResource("lid")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="lid_2"]
+atlas = ExtResource("lid")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="lid_3"]
+atlas = ExtResource("lid")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="lid_4"]
+atlas = ExtResource("lid")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="lid_5"]
+atlas = ExtResource("lid")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="lid_6"]
+atlas = ExtResource("lid")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="lid_7"]
+atlas = ExtResource("lid")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="lid_8"]
+atlas = ExtResource("lid")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="lid_frames"]
+animations = [{"frames": [{"duration": 1.0, "texture": SubResource("lid_0")}], "loop": true, "name": &"idle", "speed": 5.0},
+{"frames": [{"duration": 1.0, "texture": SubResource("lid_1")}, {"duration": 1.0, "texture": SubResource("lid_2")}, {"duration": 1.0, "texture": SubResource("lid_3")}, {"duration": 1.0, "texture": SubResource("lid_4")}], "loop": false, "name": &"rock", "speed": 4.0},
+{"frames": [{"duration": 1.0, "texture": SubResource("lid_5")}, {"duration": 1.0, "texture": SubResource("lid_6")}, {"duration": 1.0, "texture": SubResource("lid_7")}, {"duration": 1.0, "texture": SubResource("lid_8")}], "loop": false, "name": &"open", "speed": 6.0}]
+
+[sub_resource type="RectangleShape2D" id="closed_shape"]
+size = Vector2(52, 42)
+
+[node name="TreasureChestMetal" instance=ExtResource("1_chest")]
+reward_scene = ExtResource("2_reward")
+hit_animation = &"rock"
+chest_solid_open_shape_size = Vector2(52, 24)
+chest_solid_open_shape_offset = Vector2(0, 13)
+
+[node name="ChestBase" parent="." index="0"]
+sprite_frames = SubResource("base_frames")
+animation = &"idle"
+
+[node name="ChestLid" parent="." index="1"]
+z_index = -1
+sprite_frames = SubResource("lid_frames")
+animation = &"idle"
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 4)
+shape = SubResource("closed_shape")
+
+[node name="CollisionShape2D" parent="ChestSolid" index="0"]
+position = Vector2(0, 4)
+shape = SubResource("closed_shape")
+
+[node name="ItemSpawn" parent="." index="8"]
+position = Vector2(0, -2)

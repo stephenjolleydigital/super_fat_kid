@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://buwljfyq3tty4"]
+
+[ext_resource type="Script" uid="uid://bp4401niy1ppy" path="res://scripts/hazards/sewer_spike_totem.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bqric2anirscv" path="res://assets/sprites/hazards/sewer_spike_totem.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://v4y1hhnynhj6" path="res://assets/audio/sfx/hazards/sewer_spike_totem/sfx_sewer_spike_totem_retract_01.wav" id="retract"]
+[ext_resource type="AudioStream" uid="uid://eb70sjy2y2fi" path="res://assets/audio/sfx/hazards/sewer_spike_totem/sfx_sewer_spike_totem_strike_01.wav" id="strike"]
+[ext_resource type="AudioStream" uid="uid://bnxtx5ovr1qsl" path="res://assets/audio/sfx/hazards/sewer_spike_totem/sfx_sewer_spike_totem_warning_01.wav" id="warning"]
+
+[sub_resource type="RectangleShape2D" id="Body"]
+size = Vector2(16, 46)
+
+[sub_resource type="RectangleShape2D" id="Trigger"]
+size = Vector2(80, 56)
+
+[sub_resource type="RectangleShape2D" id="Strike"]
+size = Vector2(46, 5)
+
+[node name="SewerSpikeTotem" type="StaticBody2D"]
+z_index = -1
+script = ExtResource("1")
+warning_sound = ExtResource("warning")
+strike_sound = ExtResource("strike")
+retract_sound = ExtResource("retract")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("Body")
+
+[node name="Proximity" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Proximity"]
+position = Vector2(0, -20)
+shape = SubResource("Trigger")
+
+[node name="Strike" type="Area2D" parent="." groups=["enemy_attack", "player_attack"]]
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Strike"]
+position = Vector2(0, -12.5)
+shape = SubResource("Strike")
+disabled = true
+
+[node name="PhaseTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="PhaseSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = -3.0

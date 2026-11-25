@@ -1,0 +1,166 @@
+[gd_scene load_steps=24 format=3 uid="uid://ctwkmy1iby2vb"]
+
+[ext_resource type="Script" uid="uid://d3m352bn4uld7" path="res://scripts/objects/apple.gd" id="1_apple"]
+[ext_resource type="Texture2D" uid="uid://dr3yvsvbbtvi1" path="res://assets/sprites/objects/apple/apple.png" id="2_apple"]
+[ext_resource type="AudioStream" uid="uid://84bl6mmn3ckk" path="res://assets/audio/sfx/items/donut_pickup.wav" id="3_donut_sfx"]
+[ext_resource type="AudioStream" uid="uid://cy0boqr48qqk2" path="res://assets/audio/sfx/player/sfx_player_kick_enemy_hit_01.wav" id="4_kick_hit"]
+[ext_resource type="AudioStream" uid="uid://dtojkakf6xtrn" path="res://assets/audio/sfx/items/apple/sfx_apple_wobble.wav" id="5_wobble_sfx"]
+[ext_resource type="AudioStream" uid="uid://cfe77t28axy6p" path="res://assets/audio/sfx/items/apple/sfx_apple_fall_01.wav" id="6_fall_sfx"]
+[ext_resource type="AudioStream" uid="uid://cx371sq0rfdvh" path="res://assets/audio/sfx/items/apple/sfx_apple_land_01.wav" id="7_land_sfx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfc48"]
+atlas = ExtResource("2_apple")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t28r3"]
+atlas = ExtResource("2_apple")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghhma"]
+atlas = ExtResource("2_apple")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle"]
+atlas = ExtResource("2_apple")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnqeq"]
+atlas = ExtResource("2_apple")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7ump"]
+atlas = ExtResource("2_apple")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5o8mv"]
+atlas = ExtResource("2_apple")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02xuv"]
+atlas = ExtResource("2_apple")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5482"]
+atlas = ExtResource("2_apple")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rmhf"]
+atlas = ExtResource("2_apple")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_apple"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pfc48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t28r3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghhma")
+}],
+"loop": false,
+"name": &"apple_collect",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle")
+}],
+"loop": true,
+"name": &"apple_idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnqeq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7ump")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5o8mv")
+}],
+"loop": false,
+"name": &"apple_land",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02xuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5482")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rmhf")
+}],
+"loop": false,
+"name": &"apple_wobble",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player_detect"]
+size = Vector2(72, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kick_detect"]
+size = Vector2(18, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_damage"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_collect"]
+size = Vector2(11.25, 9)
+
+[node name="Apple" type="CharacterBody2D"]
+script = ExtResource("1_apple")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_apple")
+animation = &"apple_idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_body")
+
+[node name="PlayerDetectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectArea"]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_player_detect")
+
+[node name="KickDetectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KickDetectArea"]
+shape = SubResource("RectangleShape2D_kick_detect")
+
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("RectangleShape2D_damage")
+
+[node name="CollectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+position = Vector2(-0.375, 0.5)
+shape = SubResource("RectangleShape2D_collect")
+
+[node name="SFX_Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_donut_sfx")
+
+[node name="SFX_KickHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_kick_hit")
+
+[node name="SFX_Wobble" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_wobble_sfx")
+
+[node name="SFX_Fall" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_fall_sfx")
+volume_db = -3.0
+
+[node name="SFX_Land" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_land_sfx")
+volume_db = -3.0

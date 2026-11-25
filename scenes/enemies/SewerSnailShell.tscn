@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/sewer_snail/sewer_snail_shell.gd" id="1_snshell"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/sewer_snail/sewer_snail_shell.png" id="2_snshell"]
+[ext_resource type="AudioStream" uid="uid://dto6ol6y52js6" path="res://assets/audio/sfx/enemies/sewer_snail/sfx_sewer_snail_shell_slide.wav" id="3_snshellslide"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snshellbody"]
+size = Vector2(32, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snshellhurt"]
+size = Vector2(36, 30)
+
+[node name="SewerSnailShell" type="CharacterBody2D"]
+script = ExtResource("1_snshell")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_snshell")
+offset = Vector2(11.5, -33.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_snshellbody")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_snshellhurt")
+
+[node name="SFX_ShellSlide" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_snshellslide")
+volume_db = -6.0

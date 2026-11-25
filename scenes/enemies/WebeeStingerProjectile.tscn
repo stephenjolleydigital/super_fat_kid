@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://bso6hebktf80t"]
+
+[ext_resource type="Script" path="res://scripts/combat/enemy_knockback.gd" id="enemy_knockback"]
+[ext_resource type="Script" uid="uid://cixg0lqffsdi6" path="res://scripts/enemies/webee_stinger_projectile.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://b5gnv4q2io5ps" path="res://assets/sprites/enemies/webee/webee_stinger_projectile.png" id="2_tex"]
+[ext_resource type="AudioStream" uid="uid://cdj6qxcll3p7f" path="res://assets/audio/sfx/enemies/webee/sfx_webee_stinger_hit_01.wav" id="3_sfx_hit"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fly0"]
+atlas = ExtResource("2_tex")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fly1"]
+atlas = ExtResource("2_tex")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hit0"]
+atlas = ExtResource("2_tex")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hit1"]
+atlas = ExtResource("2_tex")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hit2"]
+atlas = ExtResource("2_tex")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_stinger"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fly0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fly1")
+}],
+"loop": true,
+"name": &"stinger_fly",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hit0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hit1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hit2")
+}],
+"loop": false,
+"name": &"stinger_hit",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_stinger"]
+radius = 3.5
+
+[node name="WebeeStingerProjectile" type="Area2D" groups=["enemy_attack"]]
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_stinger")
+animation = &"stinger_fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_stinger")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="SFX_Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sfx_hit")
+
+[node name="EnemyKnockback" type="Node" parent="."]
+script = ExtResource("enemy_knockback")
+damage_areas = Array[NodePath]([NodePath(".")])

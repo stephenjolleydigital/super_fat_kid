@@ -1,0 +1,228 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2h1t8jjbh7h1"]
+
+[ext_resource type="Script" uid="uid://dpcaql6rhbbfl" path="res://scripts/ui/ui.gd" id="1_s64wo"]
+[ext_resource type="SpriteFrames" uid="uid://btlmwdgu0wijb" path="res://assets/sprites/ui/toasts/ui_toast_upgrade_crouch_frames.tres" id="4_j3nm3"]
+[ext_resource type="FontFile" uid="uid://36snu8lrt3xj" path="res://assets/fonts/PressStart2P-Regular.ttf" id="5_dqg8s"]
+[ext_resource type="AudioStream" uid="uid://cd7mdfn1y5bdj" path="res://assets/audio/sfx/ui/sfx_pause_open_01.wav" id="6_pause_open"]
+[ext_resource type="AudioStream" uid="uid://cxtt5bltw0c4k" path="res://assets/audio/sfx/ui/sfx_pause_close_01.wav" id="7_pause_close"]
+[ext_resource type="AudioStream" uid="uid://ftomy52yya0p" path="res://assets/audio/sfx/ui/sfx_ui_move_01.wav" id="8_ui_move"]
+[ext_resource type="AudioStream" uid="uid://dn7tol64otifa" path="res://assets/audio/sfx/ui/sfx_ui_confirm_01.wav" id="9_ui_confirm"]
+[ext_resource type="Script" uid="uid://bawrlaf5m3xmh" path="res://scripts/ui/level_clear_banner.gd" id="10_level_clear"]
+[ext_resource type="AudioStream" uid="uid://dup4swen0cucy" path="res://assets/audio/music/jingles/level_complete_01.wav" id="11_level_complete_jingle"]
+[ext_resource type="PackedScene" path="res://scenes/ui/LevelIntro.tscn" id="12_level_intro"]
+[ext_resource type="AudioStream" uid="uid://d0oqx4lquq7pr" path="res://assets/audio/sfx/ui/sfx_ui_extra_life_arrive.wav" id="13_life_arrive"]
+[ext_resource type="PackedScene" path="res://scenes/ui/PlayerHUD.tscn" id="14_hud"]
+
+[node name="UI" type="CanvasLayer" groups=["ui"]]
+process_mode = 3
+script = ExtResource("1_s64wo")
+
+[node name="SfxPauseOpen" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("6_pause_open")
+volume_db = -8.0
+
+[node name="SfxPauseClose" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_pause_close")
+volume_db = -8.0
+
+[node name="SfxUiMove" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("8_ui_move")
+volume_db = -8.0
+
+[node name="SfxUiConfirm" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("9_ui_confirm")
+volume_db = -8.0
+
+[node name="SfxLevelCompleteJingle" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("11_level_complete_jingle")
+
+[node name="SfxExtraLifeArrive" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_life_arrive")
+volume_db = -12.0
+max_polyphony = 4
+
+[node name="PlayerHUD" parent="." instance=ExtResource("14_hud")]
+
+[node name="UpgradeToast" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(264, 87)
+sprite_frames = ExtResource("4_j3nm3")
+animation = &"higher_jump_upgrade"
+
+[node name="BossHealthContainer" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 156.0
+offset_top = 8.0
+offset_right = 292.0
+offset_bottom = 24.0
+
+[node name="BossNameLabel" type="Label" parent="BossHealthContainer"]
+layout_mode = 0
+offset_right = 136.0
+offset_bottom = 8.0
+theme_override_colors/font_color = Color(1, 0.952941, 0.623529, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("5_dqg8s")
+theme_override_font_sizes/font_size = 8
+text = "GNOME"
+horizontal_alignment = 1
+
+[node name="BossBarFrame" type="ColorRect" parent="BossHealthContainer"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 128.0
+offset_bottom = 16.0
+color = Color(0, 0, 0, 1)
+
+[node name="BossBarBg" type="ColorRect" parent="BossHealthContainer/BossBarFrame"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 119.0
+offset_bottom = 7.0
+color = Color(0.180392, 0.180392, 0.243137, 1)
+
+[node name="BossBarFill" type="ColorRect" parent="BossHealthContainer/BossBarFrame"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 119.0
+offset_bottom = 7.0
+color = Color(0.839216, 0.156863, 0.156863, 1)
+
+[node name="LevelIntro" parent="." instance=ExtResource("12_level_intro")]
+
+[node name="LevelCompleteOverlay" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="LevelCompleteOverlay"]
+layout_mode = 0
+anchor_right = 1.0
+offset_top = 20.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BannerSlot" type="Control" parent="LevelCompleteOverlay/CenterContainer"]
+custom_minimum_size = Vector2(352, 64)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Banner" type="Control" parent="LevelCompleteOverlay/CenterContainer/BannerSlot"]
+texture_filter = 1
+anchors_preset = 0
+offset_right = 352.0
+offset_bottom = 64.0
+mouse_filter = 2
+script = ExtResource("10_level_clear")
+
+[node name="LevelCompleteLabel" type="Label" parent="LevelCompleteOverlay/CenterContainer/BannerSlot/Banner"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 304.0
+offset_bottom = 48.0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_dqg8s")
+theme_override_font_sizes/font_size = 16
+text = "LEVEL CLEAR!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseMenuOverlay" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenuOverlay"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuPanel" type="Control" parent="PauseMenuOverlay/CenterContainer"]
+custom_minimum_size = Vector2(200, 52)
+layout_mode = 2
+
+[node name="Backing" type="ColorRect" parent="PauseMenuOverlay/CenterContainer/MenuPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0392157, 0.0392157, 0.0588235, 0.9)
+
+[node name="TitleLabel" type="Label" parent="PauseMenuOverlay/CenterContainer/MenuPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 192.0
+offset_bottom = 16.0
+theme_override_colors/font_color = Color(1, 0.952941, 0.623529, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("5_dqg8s")
+theme_override_font_sizes/font_size = 8
+text = "PAUSED"
+
+[node name="ResumeLabel" type="Label" parent="PauseMenuOverlay/CenterContainer/MenuPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 192.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(1, 0.952941, 0.623529, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("5_dqg8s")
+theme_override_font_sizes/font_size = 8
+text = "> RESUME"
+
+[node name="MainMenuLabel" type="Label" parent="PauseMenuOverlay/CenterContainer/MenuPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 192.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(1, 0.952941, 0.623529, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("5_dqg8s")
+theme_override_font_sizes/font_size = 8
+text = "  MAIN MENU"
+
+[node name="QuitLabel" type="Label" parent="PauseMenuOverlay/CenterContainer/MenuPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 36.0
+offset_right = 192.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(1, 0.952941, 0.623529, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("5_dqg8s")
+theme_override_font_sizes/font_size = 8
+text = "  CLOSE GAME"

@@ -1,0 +1,162 @@
+[gd_scene load_steps=22 format=3 uid="uid://difwo61kwpte1"]
+
+[ext_resource type="Script" uid="uid://d3jmbkbw3wyor" path="res://scripts/enemies/webee_web_projectile.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dtmjhswqetf67" path="res://assets/sprites/enemies/webee/webee_web_projectile.png" id="2_tex"]
+[ext_resource type="AudioStream" uid="uid://kbplgpx5jurx" path="res://assets/audio/sfx/enemies/webee/sfx_webee_web_stick_01.wav" id="3_sfx_stick"]
+[ext_resource type="AudioStream" uid="uid://b3mufi04715v8" path="res://assets/audio/sfx/enemies/webee/sfx_webee_web_dissolve_01.wav" id="4_sfx_dissolve"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/enemies/webee/sfx_webee_web_slow_01.wav" id="sfx_web_slow"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0snq8"]
+atlas = ExtResource("2_tex")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgmvr"]
+atlas = ExtResource("2_tex")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gll4q"]
+atlas = ExtResource("2_tex")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ors0y"]
+atlas = ExtResource("2_tex")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08jqg"]
+atlas = ExtResource("2_tex")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mb6cd"]
+atlas = ExtResource("2_tex")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq0j2"]
+atlas = ExtResource("2_tex")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lni8j"]
+atlas = ExtResource("2_tex")
+region = Rect2(240, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5m66"]
+atlas = ExtResource("2_tex")
+region = Rect2(264, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbs7o"]
+atlas = ExtResource("2_tex")
+region = Rect2(288, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cx86"]
+atlas = ExtResource("2_tex")
+region = Rect2(312, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcvc5"]
+atlas = ExtResource("2_tex")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luegu"]
+atlas = ExtResource("2_tex")
+region = Rect2(192, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_630vt"]
+atlas = ExtResource("2_tex")
+region = Rect2(216, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_web"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0snq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgmvr")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gll4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ors0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08jqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mb6cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq0j2")
+}],
+"loop": false,
+"name": &"spawn_grow",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lni8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5m66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbs7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cx86")
+}],
+"loop": false,
+"name": &"web_dissolve",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcvc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luegu")
+}],
+"loop": false,
+"name": &"web_form",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_630vt")
+}],
+"loop": true,
+"name": &"web_idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fly"]
+radius = 5.0
+
+[node name="WebeeWebProjectile" type="Area2D"]
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_web")
+animation = &"spawn_grow"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fly")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="SFX_Stick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sfx_stick")
+
+[node name="SFX_Dissolve" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_sfx_dissolve")
+
+[node name="SFX_SlowContact" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("sfx_web_slow")
+volume_db = -5.0
+
+[node name="SFX_SlowLoop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("sfx_web_slow")
+volume_db = -11.0

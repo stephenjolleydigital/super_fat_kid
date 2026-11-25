@@ -1,0 +1,117 @@
+[gd_scene load_steps=17 format=3]
+
+[ext_resource type="Script" path="res://scripts/objects/breakable_wall.gd" id="1_breakable_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/objects/breakable_wall/breakable_wall_left.png" id="2_wall_tex"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/objects/breakable_wall/sfx_wall_break_01.wav" id="3_break_sfx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_break_00"]
+atlas = ExtResource("2_wall_tex")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_break_01"]
+atlas = ExtResource("2_wall_tex")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_break_02"]
+atlas = ExtResource("2_wall_tex")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_break_03"]
+atlas = ExtResource("2_wall_tex")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_break_04"]
+atlas = ExtResource("2_wall_tex")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_break_05"]
+atlas = ExtResource("2_wall_tex")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_break_06"]
+atlas = ExtResource("2_wall_tex")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wall_left"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_break_00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_break_01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_break_02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_break_03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_break_04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_break_05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_break_06")
+}],
+"loop": false,
+"name": &"break",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_break_00")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurtbox"]
+size = Vector2(64, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wallsolid"]
+size = Vector2(40, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rubble"]
+size = Vector2(64, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_broken_edge"]
+size = Vector2(4, 56)
+
+[node name="BreakableWall_Left" type="Node2D"]
+script = ExtResource("1_breakable_script")
+
+[node name="SFX_Break" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_break_sfx")
+
+[node name="WallVisual" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wall_left")
+animation = &"break"
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["enemy_hurtbox"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_hurtbox")
+
+[node name="WallSolid" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallSolid"]
+position = Vector2(-12, -4)
+shape = SubResource("RectangleShape2D_wallsolid")
+
+[node name="RubblePlatform" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RubblePlatform"]
+position = Vector2(0, 28)
+shape = SubResource("RectangleShape2D_rubble")
+
+[node name="BrokenEdgeCollision" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BrokenEdgeCollision"]
+position = Vector2(-31, -4)
+shape = SubResource("RectangleShape2D_broken_edge")
+disabled = true

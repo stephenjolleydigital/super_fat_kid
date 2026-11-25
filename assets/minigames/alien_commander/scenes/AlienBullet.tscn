@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://uhhfscv4jyff"]
+
+[ext_resource type="Texture2D" uid="uid://hocgdcpqm14" path="res://assets/minigames/alien_commander/sprites/ac_alien_bullet_01.png" id="1_qn02i"]
+[ext_resource type="Script" uid="uid://cve6opwbbkdt5" path="res://assets/minigames/alien_commander/scripts/alien_bullet.gd" id="2_albult"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfdh6"]
+size = Vector2(3.43249, 5.39093)
+
+[node name="AlienBullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("2_albult")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qn02i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.53)
+scale = Vector2(0.779, 0.863)
+shape = SubResource("RectangleShape2D_wfdh6")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -0.5)
+scale = Vector2(0.2, 0.3)

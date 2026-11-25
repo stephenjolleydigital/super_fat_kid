@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/level_intro.gd" id="1_intro"]
+
+[node name="LevelIntro" type="Control"]
+process_mode = 1
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture_filter = 1
+script = ExtResource("1_intro")
+
+[node name="TitleWindow" type="Control" parent="."]
+layout_mode = 0
+mouse_filter = 2
+clip_contents = true
+
+[node name="AnimatedTitle" type="Control" parent="TitleWindow"]
+layout_mode = 0
+mouse_filter = 2
+
+[node name="LevelWord" type="Label" parent="TitleWindow/AnimatedTitle"]
+layout_mode = 0
+mouse_filter = 2
+text = "LEVEL"
+
+[node name="LevelNumber" type="Label" parent="TitleWindow/AnimatedTitle"]
+layout_mode = 0
+mouse_filter = 2
+text = "1-1"
+
+[node name="OptionalIntroSting" type="AudioStreamPlayer" parent="."]

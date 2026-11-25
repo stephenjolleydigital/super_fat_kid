@@ -1,0 +1,274 @@
+[gd_scene load_steps=23 format=3 uid="uid://85fil3n1icgc"]
+
+[ext_resource type="Script" uid="uid://bnh2c5mbjv3p7" path="res://assets/minigames/alien_commander/scripts/ac_audio.gd" id="1_acaudio"]
+[ext_resource type="Script" uid="uid://bywe17yu251c8" path="res://assets/minigames/alien_commander/scripts/alien_formation.gd" id="1_alfmt"]
+[ext_resource type="Script" uid="uid://b0en324dw7bem" path="res://assets/minigames/alien_commander/scripts/alien_commander_game.gd" id="1_game"]
+[ext_resource type="Script" uid="uid://b6p2lw1fhjtb7" path="res://assets/minigames/alien_commander/scripts/meter_bar.gd" id="1_meter"]
+[ext_resource type="Script" uid="uid://20ejgo5qqndj" path="res://assets/minigames/alien_commander/scripts/ac_starfield.gd" id="1_starfield"]
+[ext_resource type="Texture2D" uid="uid://bgn0lwadl6eyc" path="res://assets/minigames/alien_commander/sprites/ac_alien_01_strip.png" id="2_tjxla"]
+[ext_resource type="Script" uid="uid://d3jdgs15vbgb3" path="res://assets/minigames/alien_commander/scripts/alien_unit.gd" id="3_cywhv"]
+[ext_resource type="Texture2D" uid="uid://clwfi85h6rchr" path="res://assets/minigames/alien_commander/sprites/ac_alien_02_strip.png" id="3_r208y"]
+[ext_resource type="Texture2D" uid="uid://cybbe3sbdf5dm" path="res://assets/minigames/alien_commander/sprites/ac_alien_03_strip.png" id="4_kms0d"]
+[ext_resource type="FontFile" uid="uid://36snu8lrt3xj" path="res://assets/fonts/PressStart2P-Regular.ttf" id="5_status_font"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elq2y"]
+atlas = ExtResource("2_tjxla")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6nnr"]
+atlas = ExtResource("2_tjxla")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uubgm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elq2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6nnr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bvumh"]
+size = Vector2(12, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5kiu"]
+atlas = ExtResource("3_r208y")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71o25"]
+atlas = ExtResource("3_r208y")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ffhxv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5kiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71o25")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n6m6x"]
+size = Vector2(12, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iewvg"]
+atlas = ExtResource("4_kms0d")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilqjd"]
+atlas = ExtResource("4_kms0d")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6raq8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iewvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilqjd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8ahs"]
+size = Vector2(12, 13)
+
+[node name="AlienCommander" type="Node2D"]
+script = ExtResource("1_game")
+
+[node name="ACAudio" type="Node" parent="."]
+script = ExtResource("1_acaudio")
+
+[node name="Playfield" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, 256, 0, 256, 224, 0, 224)
+uv = PackedVector2Array(-1, 1, 480, 1, 480, 267, 0, 267)
+
+[node name="Starfield" type="Node2D" parent="."]
+script = ExtResource("1_starfield")
+
+[node name="EnemyBullets" type="Node2D" parent="."]
+position = Vector2(60, 20)
+
+[node name="AlienBullets" type="Node2D" parent="."]
+
+[node name="AlienFormation" type="Node2D" parent="."]
+position = Vector2(64, 24)
+script = ExtResource("1_alfmt")
+
+[node name="Aliens" type="Node2D" parent="AlienFormation"]
+
+[node name="Alien01_1" type="Area2D" parent="AlienFormation/Aliens"]
+script = ExtResource("3_cywhv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AlienFormation/Aliens/Alien01_1"]
+sprite_frames = SubResource("SpriteFrames_uubgm")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlienFormation/Aliens/Alien01_1"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_bvumh")
+
+[node name="Alien01_2" type="Area2D" parent="AlienFormation/Aliens"]
+position = Vector2(64, 0)
+script = ExtResource("3_cywhv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AlienFormation/Aliens/Alien01_2"]
+sprite_frames = SubResource("SpriteFrames_uubgm")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlienFormation/Aliens/Alien01_2"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_bvumh")
+
+[node name="Alien01_3" type="Area2D" parent="AlienFormation/Aliens"]
+position = Vector2(128, 0)
+script = ExtResource("3_cywhv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AlienFormation/Aliens/Alien01_3"]
+sprite_frames = SubResource("SpriteFrames_uubgm")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlienFormation/Aliens/Alien01_3"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_bvumh")
+
+[node name="Alien02_1" type="Area2D" parent="AlienFormation/Aliens"]
+position = Vector2(0, 24)
+script = ExtResource("3_cywhv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AlienFormation/Aliens/Alien02_1"]
+sprite_frames = SubResource("SpriteFrames_ffhxv")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlienFormation/Aliens/Alien02_1"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_n6m6x")
+
+[node name="Alien02_2" type="Area2D" parent="AlienFormation/Aliens"]
+position = Vector2(64, 24)
+script = ExtResource("3_cywhv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AlienFormation/Aliens/Alien02_2"]
+sprite_frames = SubResource("SpriteFrames_ffhxv")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlienFormation/Aliens/Alien02_2"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_n6m6x")
+
+[node name="Alien02_3" type="Area2D" parent="AlienFormation/Aliens"]
+position = Vector2(128, 24)
+script = ExtResource("3_cywhv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AlienFormation/Aliens/Alien02_3"]
+sprite_frames = SubResource("SpriteFrames_ffhxv")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlienFormation/Aliens/Alien02_3"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_n6m6x")
+
+[node name="Alien03_1" type="Area2D" parent="AlienFormation/Aliens"]
+position = Vector2(0, 48)
+script = ExtResource("3_cywhv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AlienFormation/Aliens/Alien03_1"]
+sprite_frames = SubResource("SpriteFrames_6raq8")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlienFormation/Aliens/Alien03_1"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_v8ahs")
+
+[node name="Alien03_2" type="Area2D" parent="AlienFormation/Aliens"]
+position = Vector2(64, 48)
+script = ExtResource("3_cywhv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AlienFormation/Aliens/Alien03_2"]
+sprite_frames = SubResource("SpriteFrames_6raq8")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlienFormation/Aliens/Alien03_2"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_v8ahs")
+
+[node name="Alien03_3" type="Area2D" parent="AlienFormation/Aliens"]
+position = Vector2(128, 48)
+script = ExtResource("3_cywhv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AlienFormation/Aliens/Alien03_3"]
+sprite_frames = SubResource("SpriteFrames_6raq8")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlienFormation/Aliens/Alien03_3"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_v8ahs")
+
+[node name="Bounds" type="Node2D" parent="."]
+
+[node name="LeftBound" type="Marker2D" parent="Bounds"]
+
+[node name="RightBound" type="Marker2D" parent="Bounds"]
+position = Vector2(256, 0)
+
+[node name="TopBound" type="Marker2D" parent="Bounds"]
+
+[node name="BottomBound" type="Marker2D" parent="Bounds"]
+position = Vector2(0, 224)
+
+[node name="DangerLine" type="Marker2D" parent="Bounds"]
+position = Vector2(0, 180)
+
+[node name="ShipHome" type="Marker2D" parent="Bounds"]
+position = Vector2(134, 178)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="FireOrderMeter" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 121.0
+offset_right = 14.0
+offset_bottom = 201.0
+script = ExtResource("1_meter")
+fill_color = Color(0.976471, 0.780392, 0.309804, 1)
+ready_color = Color(0.988235, 0.807843, 0.435294, 1)
+
+[node name="MoveMeter" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 242.0
+offset_top = 121.0
+offset_right = 248.0
+offset_bottom = 201.0
+script = ExtResource("1_meter")
+fill_color = Color(0.227451, 0.52549, 1, 1)
+ready_color = Color(0.423529, 0.631373, 0.956863, 1)
+
+[node name="StatusLabel" type="Label" parent="UI"]
+visible = false
+offset_top = 100.0
+offset_right = 256.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.992157, 0.952941, 0.811765, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("5_status_font")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1

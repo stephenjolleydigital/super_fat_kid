@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="Script" uid="uid://civfqg4lao3c8" path="res://scripts/pickups/pickup_upgrade.gd" id="1_cess1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/pickups/pickup_egg.png" id="2_cess1"]
+[ext_resource type="AudioStream" uid="uid://bt4sitxjetitg" path="res://assets/audio/sfx/items/sfx_pickup_upgrade_major.wav" id="3_ph3ty"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2lpu"]
+size = Vector2(20, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ph3ty"]
+atlas = ExtResource("2_cess1")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2lpu"]
+atlas = ExtResource("2_cess1")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7mqg"]
+atlas = ExtResource("2_cess1")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cess1"]
+atlas = ExtResource("2_cess1")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p3vk"]
+atlas = ExtResource("2_cess1")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnxrn"]
+atlas = ExtResource("2_cess1")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_706tk"]
+atlas = ExtResource("2_cess1")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bkgmd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ph3ty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2lpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7mqg")
+}],
+"loop": false,
+"name": &"collect",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cess1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3p3vk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnxrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_706tk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Pickup_Egg" type="Area2D"]
+script = ExtResource("1_cess1")
+upgrade_id = "max_gas_upgrade"
+upgrade_toast = "max_gas_upgrade"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f2lpu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bkgmd")
+animation = &"collect"
+autoplay = "default"
+
+[node name="SFX_Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ph3ty")

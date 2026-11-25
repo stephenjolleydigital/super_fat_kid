@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpwut1vjotjp5"]
+
+[ext_resource type="Script" uid="uid://bkjuvqddiya6f" path="res://assets/minigames/alien_commander/scripts/enemy_ship_04.gd" id="1_ship04"]
+[ext_resource type="Texture2D" uid="uid://dkvc5ktc12l2l" path="res://assets/minigames/alien_commander/sprites/ac_enemy_ship_04.png" id="2_ship04tex"]
+
+[node name="EnemyShip" type="Area2D"]
+z_index = 1
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_ship04")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ship04tex")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-30, -20, 30, -20, 30, 24, -30, 24)
+
+[node name="BulletSpawn_01" type="Marker2D" parent="."]
+position = Vector2(0, -24)

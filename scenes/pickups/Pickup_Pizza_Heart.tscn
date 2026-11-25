@@ -1,0 +1,146 @@
+[gd_scene load_steps=22 format=3 uid="uid://de73fpa1knveo"]
+
+[ext_resource type="Script" uid="uid://cxq4u7hx62bbb" path="res://scripts/pickups/pickup_pizza_heart.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cal16c64r3dre" path="res://assets/sprites/pickups/pizza_heart_upgrade.png" id="2_tex"]
+[ext_resource type="AudioStream" uid="uid://bt4sitxjetitg" path="res://assets/audio/sfx/items/sfx_pickup_upgrade_major.wav" id="3_sfx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_collect0"]
+atlas = ExtResource("2_tex")
+region = Rect2(192, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_collect1"]
+atlas = ExtResource("2_tex")
+region = Rect2(216, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_collect2"]
+atlas = ExtResource("2_tex")
+region = Rect2(240, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_collect3"]
+atlas = ExtResource("2_tex")
+region = Rect2(264, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_collect4"]
+atlas = ExtResource("2_tex")
+region = Rect2(288, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_collect5"]
+atlas = ExtResource("2_tex")
+region = Rect2(312, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_collect6"]
+atlas = ExtResource("2_tex")
+region = Rect2(336, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_collect7"]
+atlas = ExtResource("2_tex")
+region = Rect2(360, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle0"]
+atlas = ExtResource("2_tex")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle1"]
+atlas = ExtResource("2_tex")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle2"]
+atlas = ExtResource("2_tex")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle3"]
+atlas = ExtResource("2_tex")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle4"]
+atlas = ExtResource("2_tex")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle5"]
+atlas = ExtResource("2_tex")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle6"]
+atlas = ExtResource("2_tex")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle7"]
+atlas = ExtResource("2_tex")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pizza"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_collect0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_collect1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_collect2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_collect3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_collect4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_collect5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_collect6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_collect7")
+}],
+"loop": false,
+"name": &"collect",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_col"]
+size = Vector2(20, 10)
+
+[node name="Pickup_Pizza_Heart" type="Area2D"]
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_pizza")
+animation = &"collect"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_col")
+
+[node name="SFX_Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sfx")

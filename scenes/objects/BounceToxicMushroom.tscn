@@ -1,0 +1,220 @@
+[gd_scene load_steps=29 format=3 uid="uid://c5w3elqmehe1i"]
+
+[ext_resource type="Script" uid="uid://dfhi6tp77k8ed" path="res://scripts/objects/BounceToxicMushroom.gd" id="1_toxic"]
+[ext_resource type="Texture2D" uid="uid://ckshnctnfhr6s" path="res://assets/sprites/objects/bounce_mushroom/bounce_toxic_mushroom.png" id="2_tex"]
+[ext_resource type="AudioStream" uid="uid://cwrny1k5ihdvd" path="res://assets/audio/sfx/objects/mushroom/sfx_bounce_mushroom_01.wav" id="3_bounce_sfx"]
+[ext_resource type="AudioStream" uid="uid://1lee0ugemslm" path="res://assets/audio/sfx/objects/mushroom/sfx_toxic_mushroom_release_01.wav" id="5_release_sfx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmr32"]
+atlas = ExtResource("2_tex")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ga0qv"]
+atlas = ExtResource("2_tex")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xi7x"]
+atlas = ExtResource("2_tex")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny14p"]
+atlas = ExtResource("2_tex")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p6nf"]
+atlas = ExtResource("2_tex")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ouvn3"]
+atlas = ExtResource("2_tex")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dncr"]
+atlas = ExtResource("2_tex")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0m6wo"]
+atlas = ExtResource("2_tex")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhh35"]
+atlas = ExtResource("2_tex")
+region = Rect2(832, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgxoe"]
+atlas = ExtResource("2_tex")
+region = Rect2(896, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2mdi"]
+atlas = ExtResource("2_tex")
+region = Rect2(960, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gj0c0"]
+atlas = ExtResource("2_tex")
+region = Rect2(1024, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5sym"]
+atlas = ExtResource("2_tex")
+region = Rect2(1088, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu7c6"]
+atlas = ExtResource("2_tex")
+region = Rect2(1152, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mll31"]
+atlas = ExtResource("2_tex")
+region = Rect2(1216, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o40nm"]
+atlas = ExtResource("2_tex")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoyls"]
+atlas = ExtResource("2_tex")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21ljg"]
+atlas = ExtResource("2_tex")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f42mr"]
+atlas = ExtResource("2_tex")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb2b6"]
+atlas = ExtResource("2_tex")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mushroom"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmr32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ga0qv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xi7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ny14p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3p6nf")
+}],
+"loop": false,
+"name": &"bounce",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouvn3")
+}],
+"loop": false,
+"name": &"cooldown",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dncr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0m6wo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhh35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgxoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2mdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gj0c0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5sym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu7c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mll31")
+}],
+"loop": false,
+"name": &"gas_release",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ouvn3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o40nm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aoyls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21ljg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f42mr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vb2b6")
+}],
+"loop": false,
+"name": &"windup",
+"speed": 30.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform"]
+size = Vector2(24, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
+size = Vector2(26, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gas"]
+size = Vector2(28, 30)
+
+[node name="BounceToxicMushroom" type="StaticBody2D" groups=["bounce_mushroom"]]
+script = ExtResource("1_toxic")
+
+[node name="SFX_Bounce" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_bounce_sfx")
+
+[node name="SFX_Release" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_release_sfx")
+volume_db = -10.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mushroom")
+animation = &"gas_release"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="BounceTrigger" type="Area2D" parent="."]
+position = Vector2(0, 17)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BounceTrigger"]
+position = Vector2(0, -12.5)
+shape = SubResource("RectangleShape2D_trigger")
+
+[node name="GasDamage" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GasDamage"]
+position = Vector2(2, -9)
+shape = SubResource("RectangleShape2D_gas")
+disabled = true

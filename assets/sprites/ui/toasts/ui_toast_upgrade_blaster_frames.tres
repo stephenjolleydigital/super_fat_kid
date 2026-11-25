@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://bb6bsoriv6xob"]
+
+[ext_resource type="Texture2D" uid="uid://bbxcrpxrp0oh8" path="res://assets/sprites/ui/toasts/ui_toast_upgrade_blaster.png" id="texture"]
+
+[sub_resource type="AtlasTexture" id="frame_0"]
+atlas = ExtResource("texture")
+region = Rect2(0, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="frame_1"]
+atlas = ExtResource("texture")
+region = Rect2(192, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="frame_2"]
+atlas = ExtResource("texture")
+region = Rect2(384, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="frame_3"]
+atlas = ExtResource("texture")
+region = Rect2(576, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="frame_4"]
+atlas = ExtResource("texture")
+region = Rect2(768, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="frame_5"]
+atlas = ExtResource("texture")
+region = Rect2(960, 0, 192, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("frame_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("frame_5")
+}],
+"loop": false,
+"name": &"blaster_upgrade",
+"speed": 5.0
+}]

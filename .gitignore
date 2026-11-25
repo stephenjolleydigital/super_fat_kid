@@ -1,0 +1,23 @@
+# Generated Godot caches and exported builds
+.godot/
+.import/
+.export/
+builds/
+exports/
+# Local editor and AI configuration
+.cursor/
+.codex/
+.agents/
+# Credentials and temporary files
+.godot/export_credentials.cfg
+.env
+.env.*
+*.pem
+*.pfx
+*.p12
+*.keystore
+*.tmp
+*.tmp/
+*.reapeaks
+Thumbs.db
+.DS_Store

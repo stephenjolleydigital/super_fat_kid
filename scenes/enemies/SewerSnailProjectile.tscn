@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://ct4wqkacei0vw"]
+
+[ext_resource type="Script" uid="uid://d3fubms6bsuto" path="res://scripts/enemies/sewer_snail/sewer_snail_projectile.gd" id="1_snproj"]
+[ext_resource type="Texture2D" uid="uid://bcm4hpk50cuvv" path="res://assets/sprites/enemies/sewer_snail/sewer_snail_projectile.png" id="2_snproj"]
+[ext_resource type="AudioStream" uid="uid://fu1uxkaambaq" path="res://assets/audio/sfx/enemies/sewer_snail/sfx_sewer_snail_projectile_impact.wav" id="3_snimpact"]
+[ext_resource type="Script" uid="uid://46ptfo05lgob" path="res://scripts/combat/enemy_knockback.gd" id="enemy_knockback"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snp0"]
+atlas = ExtResource("2_snproj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snp1"]
+atlas = ExtResource("2_snproj")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snp2"]
+atlas = ExtResource("2_snproj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snp3"]
+atlas = ExtResource("2_snproj")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snp4"]
+atlas = ExtResource("2_snproj")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_snproj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snp1")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snp4")
+}],
+"loop": false,
+"name": &"splat",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_snproj"]
+radius = 3.16228
+
+[node name="SewerSnailProjectile" type="Area2D"]
+script = ExtResource("1_snproj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_snproj")
+animation = &"splat"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_snproj")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="SFX_Impact" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_snimpact")
+volume_db = -4.0
+
+[node name="EnemyKnockback" type="Node" parent="."]
+script = ExtResource("enemy_knockback")
+damage_areas = Array[NodePath]([NodePath(".")])

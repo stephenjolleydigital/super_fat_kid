@@ -1,0 +1,202 @@
+[gd_scene load_steps=29 format=3 uid="uid://7g6cuavaxkok"]
+
+[ext_resource type="Script" uid="uid://gn7n5ex3tfrr" path="res://scripts/hazards/toxic_water.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cuxojocp0u8pf" path="res://assets/sprites/hazards/toxic_water.png" id="2_idle"]
+[ext_resource type="Texture2D" uid="uid://cb6dqwpsdsccx" path="res://assets/sprites/hazards/toxic_water_squirt.png" id="3_squirt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_0"]
+atlas = ExtResource("2_idle")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_1"]
+atlas = ExtResource("2_idle")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_2"]
+atlas = ExtResource("2_idle")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_3"]
+atlas = ExtResource("2_idle")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_4"]
+atlas = ExtResource("2_idle")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_5"]
+atlas = ExtResource("2_idle")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_6"]
+atlas = ExtResource("2_idle")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_7"]
+atlas = ExtResource("2_idle")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_8"]
+atlas = ExtResource("2_idle")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_9"]
+atlas = ExtResource("2_idle")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idle_10"]
+atlas = ExtResource("2_idle")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhhsl"]
+atlas = ExtResource("3_squirt")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1u4o"]
+atlas = ExtResource("3_squirt")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4tbq"]
+atlas = ExtResource("3_squirt")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igty4"]
+atlas = ExtResource("3_squirt")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rxxh"]
+atlas = ExtResource("3_squirt")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi5vw"]
+atlas = ExtResource("3_squirt")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wwe0"]
+atlas = ExtResource("3_squirt")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dgo1"]
+atlas = ExtResource("3_squirt")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nevqs"]
+atlas = ExtResource("3_squirt")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv1n0"]
+atlas = ExtResource("3_squirt")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6b5o8"]
+atlas = ExtResource("3_squirt")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_toxic_water"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idle_10")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhhsl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1u4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4tbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igty4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rxxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi5vw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wwe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dgo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nevqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv1n0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6b5o8")
+}],
+"loop": false,
+"name": &"squirt",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_liquid"]
+size = Vector2(32, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_squirt"]
+size = Vector2(18, 40)
+
+[node name="ToxicWater" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.7)
+sprite_frames = SubResource("SpriteFrames_toxic_water")
+animation = &"squirt"
+autoplay = "idle"
+
+[node name="LiquidDamage" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LiquidDamage"]
+position = Vector2(-8, 3.5)
+shape = SubResource("RectangleShape2D_liquid")
+
+[node name="SquirtDamage" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SquirtDamage"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_squirt")
+disabled = true

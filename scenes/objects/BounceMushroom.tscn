@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://v6jlh7t1irj3"]
+
+[ext_resource type="Script" uid="uid://cbchc1rpmeqr1" path="res://scripts/objects/bounce_mushroom.gd" id="1_bounce"]
+[ext_resource type="Texture2D" uid="uid://dnit2pvxhvlbm" path="res://assets/sprites/objects/bounce_mushroom/bounce_mushroom.png" id="2_tex"]
+[ext_resource type="AudioStream" uid="uid://cwrny1k5ihdvd" path="res://assets/audio/sfx/objects/mushroom/sfx_bounce_mushroom_01.wav" id="3_bounce_sfx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0"]
+atlas = ExtResource("2_tex")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1"]
+atlas = ExtResource("2_tex")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2"]
+atlas = ExtResource("2_tex")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3"]
+atlas = ExtResource("2_tex")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4"]
+atlas = ExtResource("2_tex")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5"]
+atlas = ExtResource("2_tex")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mushroom"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5")
+}],
+"loop": false,
+"name": &"bounce",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform"]
+size = Vector2(24, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
+size = Vector2(26, 9)
+
+[node name="BounceMushroom" type="StaticBody2D" groups=["bounce_mushroom"]]
+script = ExtResource("1_bounce")
+
+[node name="SFX_Bounce" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_bounce_sfx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mushroom")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="BounceTrigger" type="Area2D" parent="."]
+position = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BounceTrigger"]
+position = Vector2(0, -12.5)
+shape = SubResource("RectangleShape2D_trigger")

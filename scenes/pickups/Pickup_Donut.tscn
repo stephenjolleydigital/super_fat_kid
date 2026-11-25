@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://b481nrprh4joe"]
+
+[ext_resource type="Script" uid="uid://dtjhjh0xs6vi" path="res://scripts/pickups/pickup_donut.gd" id="1_46cdy"]
+[ext_resource type="Texture2D" uid="uid://4lsvqwkqhw5c" path="res://assets/sprites/pickups/pickup_donut.png" id="1_eddog"]
+[ext_resource type="AudioStream" uid="uid://84bl6mmn3ckk" path="res://assets/audio/sfx/items/donut_pickup.wav" id="3_8iofw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46cdy"]
+atlas = ExtResource("1_eddog")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iofw"]
+atlas = ExtResource("1_eddog")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycnp2"]
+atlas = ExtResource("1_eddog")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1smmj"]
+atlas = ExtResource("1_eddog")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr6l1"]
+atlas = ExtResource("1_eddog")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybcur"]
+atlas = ExtResource("1_eddog")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmiq1"]
+atlas = ExtResource("1_eddog")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yujos"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46cdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iofw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycnp2")
+}],
+"loop": false,
+"name": &"collect",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1smmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr6l1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybcur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmiq1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eo3jq"]
+radius = 8.06226
+
+[node name="DonutPickup" type="Area2D"]
+script = ExtResource("1_46cdy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yujos")
+animation = &"collect"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eo3jq")
+
+[node name="SFX_Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8iofw")

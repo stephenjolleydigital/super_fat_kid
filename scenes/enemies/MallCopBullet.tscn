@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwhs06crt44fp"]
+
+[ext_resource type="Script" path="res://scripts/combat/enemy_knockback.gd" id="enemy_knockback"]
+[ext_resource type="Texture2D" uid="uid://cit742r8b0dly" path="res://assets/sprites/enemies/mall_cop/mall_cop_bullet.png" id="1_l15si"]
+[ext_resource type="Script" uid="uid://vndq7po8p2kq" path="res://scripts/enemies/mall_cop_bullet.gd" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l15si"]
+size = Vector2(5, 1.25)
+
+[node name="MallCopBullet" type="Area2D" groups=["enemy_attack"]]
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_l15si")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l15si")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 1)
+
+[node name="EnemyKnockback" type="Node" parent="."]
+script = ExtResource("enemy_knockback")
+damage_areas = Array[NodePath]([NodePath(".")])

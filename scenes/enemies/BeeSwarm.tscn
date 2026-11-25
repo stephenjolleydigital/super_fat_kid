@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://c8bw3m1k7xq2n"]
+
+[ext_resource type="Script" path="res://scripts/combat/enemy_knockback.gd" id="enemy_knockback"]
+[ext_resource type="Script" uid="uid://c1c0kckgu4w" path="res://scripts/enemies/bee_swarm.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://soygy0qyk67k" path="res://assets/sprites/enemies/bee_swarm/bee_swarm.png" id="2_texture"]
+[ext_resource type="AudioStream" uid="uid://dfj67j8rv3w7i" path="res://assets/audio/sfx/enemies/bee_swarm/sfx_bee_swarm_activate_01.wav" id="3_sfx_activate"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frame0"]
+atlas = ExtResource("2_texture")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frame1"]
+atlas = ExtResource("2_texture")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frame2"]
+atlas = ExtResource("2_texture")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frame3"]
+atlas = ExtResource("2_texture")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_buzz"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frame0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frame1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frame2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frame3")
+}],
+"loop": true,
+"name": &"buzz",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(26, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trigger"]
+size = Vector2(542, 159)
+
+[node name="BeeSwarm" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_buzz")
+animation = &"buzz"
+
+[node name="AttackHitbox" type="Area2D" parent="." groups=["enemy_attack"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_attack")
+
+[node name="TriggerArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_trigger")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1, -1)
+scale = Vector2(2.2, 1.2)
+
+[node name="SFX_Activate" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sfx_activate")
+volume_db = -18.0
+
+[node name="EnemyKnockback" type="Node" parent="."]
+script = ExtResource("enemy_knockback")
+damage_areas = Array[NodePath]([NodePath("AttackHitbox")])

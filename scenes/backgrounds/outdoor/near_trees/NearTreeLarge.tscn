@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ynya5o05p2c"]
+
+[ext_resource type="Texture2D" uid="uid://drcwgthy7picn" path="res://assets/backgrounds/outdoor/trees_near/tree_near_large_01.png" id="1"]
+
+[node name="NearTreeLarge" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1")

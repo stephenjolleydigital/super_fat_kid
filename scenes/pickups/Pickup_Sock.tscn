@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://cn4ky0k2q7ua6"]
+
+[ext_resource type="Script" uid="uid://civfqg4lao3c8" path="res://scripts/pickups/pickup_upgrade.gd" id="1_4uda2"]
+[ext_resource type="Texture2D" uid="uid://b6q4jrkwo6h5e" path="res://assets/sprites/pickups/pickup_sock.png" id="2_4uda2"]
+[ext_resource type="AudioStream" uid="uid://bt4sitxjetitg" path="res://assets/audio/sfx/items/sfx_pickup_upgrade_major.wav" id="3_71vj8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qbyxp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlubm"]
+atlas = ExtResource("2_4uda2")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71vj8"]
+atlas = ExtResource("2_4uda2")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4bps"]
+atlas = ExtResource("2_4uda2")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67npn"]
+atlas = ExtResource("2_4uda2")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5mua"]
+atlas = ExtResource("2_4uda2")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkjbw"]
+atlas = ExtResource("2_4uda2")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1s2x"]
+atlas = ExtResource("2_4uda2")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xeqv3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlubm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71vj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4bps")
+}],
+"loop": false,
+"name": &"collect",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67npn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5mua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkjbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1s2x")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Pickup_Sock" type="Area2D"]
+script = ExtResource("1_4uda2")
+upgrade_id = "higher_jump_upgrade"
+upgrade_toast = "higher_jump_upgrade"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qbyxp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xeqv3")
+animation = &"collect"
+
+[node name="SFX_Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_71vj8")

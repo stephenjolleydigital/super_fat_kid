@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="CampaignCatalog" load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/progression/campaign_catalog.gd" id="1_catalog"]
+[ext_resource type="Script" path="res://scripts/progression/campaign_level.gd" id="2_level"]
+
+[sub_resource type="Resource" id="Resource_1_1"]
+script = ExtResource("2_level")
+scene_path = "res://scenes/levels/Level_1_1.tscn"
+
+[sub_resource type="Resource" id="Resource_1_2"]
+script = ExtResource("2_level")
+scene_path = "res://scenes/levels/Level_1_2.tscn"
+
+[sub_resource type="Resource" id="Resource_1_3"]
+script = ExtResource("2_level")
+scene_path = "res://scenes/levels/Level_1_3.tscn"
+
+[sub_resource type="Resource" id="Resource_1_4"]
+script = ExtResource("2_level")
+scene_path = "res://scenes/levels/Level_1_4.tscn"
+
+[sub_resource type="Resource" id="Resource_1_5"]
+script = ExtResource("2_level")
+scene_path = "res://scenes/levels/Level_1_5.tscn"
+
+[sub_resource type="Resource" id="Resource_1_6"]
+script = ExtResource("2_level")
+scene_path = "res://scenes/levels/Level_1_6_Boss.tscn"
+completes_stamina_curse = true
+completes_gas_transmutation = true
+completion_upgrade_ids = Array[String](["double_jump_upgrade"])
+
+[sub_resource type="Resource" id="Resource_2_1"]
+script = ExtResource("2_level")
+scene_path = "res://scenes/levels/Level_2_1.tscn"
+
+[sub_resource type="Resource" id="Resource_2_2"]
+script = ExtResource("2_level")
+scene_path = "res://scenes/levels/Level_2_2.tscn"
+
+[sub_resource type="Resource" id="Resource_2_3"]
+script = ExtResource("2_level")
+scene_path = "res://scenes/levels/Level_2_3.tscn"
+playtest_starting_upgrade_ids = Array[String](["shorts_kick_upgrade", "belt_crouch_upgrade", "double_jump_upgrade", "wall_jump_upgrade", "higher_jump_upgrade", "run_upgrade", "blaster_upgrade", "max_gas_upgrade"])
+
+[resource]
+script = ExtResource("1_catalog")
+levels = Array[ExtResource("2_level")]([SubResource("Resource_1_1"), SubResource("Resource_1_2"), SubResource("Resource_1_3"), SubResource("Resource_1_4"), SubResource("Resource_1_5"), SubResource("Resource_1_6"), SubResource("Resource_2_1"), SubResource("Resource_2_2"), SubResource("Resource_2_3")])

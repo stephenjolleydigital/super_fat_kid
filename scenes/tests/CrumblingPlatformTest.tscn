@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/tests/crumbling_platform_test.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/objects/CrumblingPlatform.tscn" id="2"]
+
+[node name="CrumblingPlatformTest" type="Node2D"]
+script = ExtResource("1")
+
+[node name="Width2" parent="." instance=ExtResource("2")]
+position = Vector2(8, 164)
+width_in_tiles = 2
+
+[node name="Width3" parent="." instance=ExtResource("2")]
+position = Vector2(56, 164)
+width_in_tiles = 3
+
+[node name="Width4" parent="." instance=ExtResource("2")]
+position = Vector2(120, 164)
+
+[node name="Width6" parent="." instance=ExtResource("2")]
+position = Vector2(200, 164)
+width_in_tiles = 6
+
+[node name="Width10" parent="." instance=ExtResource("2")]
+position = Vector2(312, 164)
+width_in_tiles = 10

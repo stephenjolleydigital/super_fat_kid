@@ -1,0 +1,235 @@
+[gd_scene load_steps=15 format=3 uid="uid://dxodw1niuuecv"]
+
+[ext_resource type="Texture2D" uid="uid://b02fx3nkwc2ls" path="res://assets/sprites/ui/title/fatkid_title_background.png" id="1_bg"]
+[ext_resource type="Script" uid="uid://ccdxrhmcbmriq" path="res://scripts/ui/title_screen.gd" id="1_title"]
+[ext_resource type="Script" uid="uid://ocrfysxv8auo" path="res://scripts/ui/pixel_stars.gd" id="2_pixel_stars"]
+[ext_resource type="Script" uid="uid://dxmxhk50gu62i" path="res://scripts/ui/big_star_twinkle.gd" id="3_big_star"]
+[ext_resource type="Texture2D" uid="uid://38nwvo5wdmig" path="res://assets/sprites/ui/title/fatkid_title_logo.png" id="3_logo"]
+[ext_resource type="Texture2D" uid="uid://3pp6gmgbx2f6" path="res://assets/sprites/ui/title/fatkid_title_fatkid_idle.png" id="4_fatkid"]
+[ext_resource type="Texture2D" uid="uid://vir4g8f76pp0" path="res://assets/sprites/ui/title/fatkid_title_start.png" id="5_start"]
+[ext_resource type="Texture2D" uid="uid://besl11hox70p6" path="res://assets/sprites/ui/title/fatkid_title_options.png" id="6_options"]
+[ext_resource type="Texture2D" uid="uid://clgblx62t7fpj" path="res://assets/sprites/ui/title/fatkid_title_exit.png" id="7_exit"]
+[ext_resource type="Texture2D" uid="uid://b6bkp52tnw45u" path="res://assets/sprites/ui/title/fatkid_title_menu_cursor.png" id="8_cursor"]
+[ext_resource type="Texture2D" uid="uid://cfb3ldfvo724y" path="res://assets/sprites/ui/title/fatkid_title_stars_01.png" id="9_stars01"]
+[ext_resource type="AudioStream" uid="uid://dn7tol64otifa" path="res://assets/audio/sfx/ui/sfx_ui_confirm_01.wav" id="10_ui_confirm"]
+[ext_resource type="AudioStream" uid="uid://ftomy52yya0p" path="res://assets/audio/sfx/ui/sfx_ui_move_01.wav" id="11_ui_move"]
+[ext_resource type="FontFile" uid="uid://36snu8lrt3xj" path="res://assets/fonts/PressStart2P-Regular.ttf" id="12_font"]
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_title")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(240, 135)
+scale = Vector2(2, 2)
+texture = ExtResource("1_bg")
+metadata/_edit_lock_ = true
+
+[node name="PixelStars" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(240, 135)
+texture = ExtResource("9_stars01")
+hframes = 34
+script = ExtResource("2_pixel_stars")
+metadata/_edit_lock_ = true
+
+[node name="BigStars" type="Node2D" parent="."]
+
+[node name="StarBlueSmall1" type="Sprite2D" parent="BigStars"]
+position = Vector2(23, 34)
+hframes = 4
+script = ExtResource("3_big_star")
+
+[node name="StarRedSmall1" type="Sprite2D" parent="BigStars"]
+position = Vector2(283, 186)
+hframes = 4
+script = ExtResource("3_big_star")
+star_color = 1
+
+[node name="StarOrangeSmall1" type="Sprite2D" parent="BigStars"]
+position = Vector2(321, 34)
+hframes = 4
+script = ExtResource("3_big_star")
+star_color = 2
+
+[node name="StarBlueSmall2" type="Sprite2D" parent="BigStars"]
+position = Vector2(465, 64)
+hframes = 4
+script = ExtResource("3_big_star")
+
+[node name="StarOrangeSmall2" type="Sprite2D" parent="BigStars"]
+position = Vector2(10, 164)
+hframes = 4
+script = ExtResource("3_big_star")
+star_color = 2
+
+[node name="StarRedSmall2" type="Sprite2D" parent="BigStars"]
+position = Vector2(30, 230)
+hframes = 4
+script = ExtResource("3_big_star")
+star_color = 1
+
+[node name="StarBlueSmall3" type="Sprite2D" parent="BigStars"]
+position = Vector2(520, 34)
+hframes = 4
+script = ExtResource("3_big_star")
+
+[node name="StarOrangeSmall3" type="Sprite2D" parent="BigStars"]
+position = Vector2(366, 13)
+hframes = 4
+script = ExtResource("3_big_star")
+star_color = 2
+
+[node name="StarBlueMedium1" type="Sprite2D" parent="BigStars"]
+position = Vector2(466, 183)
+hframes = 4
+script = ExtResource("3_big_star")
+star_size = 1
+
+[node name="StarRedMedium1" type="Sprite2D" parent="BigStars"]
+position = Vector2(194, 256)
+hframes = 4
+script = ExtResource("3_big_star")
+star_size = 1
+star_color = 1
+
+[node name="StarOrangeMedium1" type="Sprite2D" parent="BigStars"]
+position = Vector2(411, 32)
+hframes = 4
+script = ExtResource("3_big_star")
+star_size = 1
+star_color = 2
+
+[node name="StarBlueMedium2" type="Sprite2D" parent="BigStars"]
+position = Vector2(77, 216)
+hframes = 4
+script = ExtResource("3_big_star")
+star_size = 1
+
+[node name="StarRedLarge1" type="Sprite2D" parent="BigStars"]
+position = Vector2(295, 61)
+hframes = 4
+script = ExtResource("3_big_star")
+star_size = 2
+star_color = 1
+
+[node name="StarOrangeLarge1" type="Sprite2D" parent="BigStars"]
+position = Vector2(523, 161)
+hframes = 4
+script = ExtResource("3_big_star")
+star_size = 2
+star_color = 2
+
+[node name="StarBlueLarge1" type="Sprite2D" parent="BigStars"]
+position = Vector2(212, 203)
+hframes = 4
+script = ExtResource("3_big_star")
+star_size = 2
+
+[node name="Logo" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(240, 135)
+texture = ExtResource("3_logo")
+metadata/_edit_lock_ = true
+
+[node name="FatKid" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(240, 135)
+texture = ExtResource("4_fatkid")
+metadata/_edit_lock_ = true
+
+[node name="Menu" type="Node2D" parent="."]
+position = Vector2(79, 3)
+
+[node name="Start" type="Sprite2D" parent="Menu"]
+texture_filter = 1
+position = Vector2(62, 182)
+texture = ExtResource("5_start")
+
+[node name="Options" type="Sprite2D" parent="Menu"]
+texture_filter = 1
+position = Vector2(69, 204)
+texture = ExtResource("6_options")
+
+[node name="Exit" type="Sprite2D" parent="Menu"]
+texture_filter = 1
+position = Vector2(58, 227)
+texture = ExtResource("7_exit")
+
+[node name="Cursor" type="Sprite2D" parent="Menu"]
+texture_filter = 1
+position = Vector2(26, 182)
+texture = ExtResource("8_cursor")
+
+[node name="SFX_Confirm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ui_confirm")
+volume_db = -8.0
+
+[node name="SFX_Move" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ui_move")
+volume_db = -8.0
+
+[node name="OptionsOverlay" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Dim" type="ColorRect" parent="OptionsOverlay"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="CenterContainer" type="CenterContainer" parent="OptionsOverlay"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="VBoxContainer" parent="OptionsOverlay/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="OptionsOverlay/CenterContainer/Panel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.6, 0.152941, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("12_font")
+theme_override_font_sizes/font_size = 8
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="MasterLabel" type="Label" parent="OptionsOverlay/CenterContainer/Panel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.6, 0.152941, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("12_font")
+theme_override_font_sizes/font_size = 8
+text = "MASTER  100%"
+
+[node name="MusicLabel" type="Label" parent="OptionsOverlay/CenterContainer/Panel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.6, 0.152941, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("12_font")
+theme_override_font_sizes/font_size = 8
+text = "MUSIC   100%"
+
+[node name="BackLabel" type="Label" parent="OptionsOverlay/CenterContainer/Panel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.6, 0.152941, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("12_font")
+theme_override_font_sizes/font_size = 8
+text = "BACK"
+
+[node name="OptionsCursor" type="Sprite2D" parent="OptionsOverlay"]
+texture_filter = 1
+texture = ExtResource("8_cursor")

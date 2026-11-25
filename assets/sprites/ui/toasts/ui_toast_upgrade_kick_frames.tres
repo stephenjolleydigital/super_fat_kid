@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://ccm88l4714he4"]
+
+[ext_resource type="Texture2D" uid="uid://hmia53ajuf66" path="res://assets/sprites/ui/toasts/ui_toast_upgrade_kick.png" id="1_s3tc4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrltf"]
+atlas = ExtResource("1_s3tc4")
+region = Rect2(0, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbjwm"]
+atlas = ExtResource("1_s3tc4")
+region = Rect2(192, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5df04"]
+atlas = ExtResource("1_s3tc4")
+region = Rect2(384, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrdtp"]
+atlas = ExtResource("1_s3tc4")
+region = Rect2(576, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef6g5"]
+atlas = ExtResource("1_s3tc4")
+region = Rect2(768, 0, 192, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lvhv"]
+atlas = ExtResource("1_s3tc4")
+region = Rect2(960, 0, 192, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrltf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbjwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5df04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrdtp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef6g5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lvhv")
+}],
+"loop": false,
+"name": &"kick_upgrade",
+"speed": 5.0
+}]

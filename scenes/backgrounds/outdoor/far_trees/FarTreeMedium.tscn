@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b042l3qhfdqy"]
+
+[ext_resource type="Texture2D" uid="uid://dg6oveumaujbx" path="res://assets/backgrounds/outdoor/trees_far/tree_far_medium_01.png" id="1"]
+
+[node name="FarTreeMedium" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1")

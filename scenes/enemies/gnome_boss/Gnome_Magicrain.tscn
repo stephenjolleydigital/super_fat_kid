@@ -1,0 +1,104 @@
+[gd_scene load_steps=16 format=3 uid="uid://ij140y2wmnyy"]
+
+[ext_resource type="Texture2D" uid="uid://dfi3duvtfkoox" path="res://assets/sprites/enemies/gnome_boss/magicrain.png" id="1_dcpy8"]
+[ext_resource type="Script" uid="uid://d0bfj1aw7qo85" path="res://scripts/enemies/gnome_boss/gnome_magicrain.gd" id="2_rain"]
+[ext_resource type="AudioStream" uid="uid://q621tg3cqcig" path="res://assets/audio/sfx/enemies/gnome_boss/sfx_gnome_boss_magicrain_fall_01.wav" id="3_sfx_fall"]
+[ext_resource type="AudioStream" uid="uid://c2yxqfrne0s83" path="res://assets/audio/sfx/enemies/gnome_boss/sfx_gnome_boss_magicrain_hit_01.wav" id="4_sfx_hit"]
+[ext_resource type="Script" uid="uid://46ptfo05lgob" path="res://scripts/combat/enemy_knockback.gd" id="enemy_knockback"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cikx8"]
+atlas = ExtResource("1_dcpy8")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wo6k"]
+atlas = ExtResource("1_dcpy8")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pd2uo"]
+atlas = ExtResource("1_dcpy8")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amvi2"]
+atlas = ExtResource("1_dcpy8")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raici"]
+atlas = ExtResource("1_dcpy8")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyogd"]
+atlas = ExtResource("1_dcpy8")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_caq54"]
+atlas = ExtResource("1_dcpy8")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3ytp"]
+atlas = ExtResource("1_dcpy8")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_idlbu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cikx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wo6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pd2uo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amvi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_raici")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyogd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_caq54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3ytp")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vcyor"]
+radius = 7.0
+
+[node name="Area2D2" type="Area2D"]
+script = ExtResource("2_rain")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_idlbu")
+animation = &"fall"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_vcyor")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.5, 2.75)
+scale = Vector2(0.75, 1.375)
+
+[node name="SFX_Fall" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sfx_fall")
+
+[node name="SFX_Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_sfx_hit")
+
+[node name="EnemyKnockback" type="Node" parent="."]
+script = ExtResource("enemy_knockback")
+damage_areas = Array[NodePath]([NodePath(".")])

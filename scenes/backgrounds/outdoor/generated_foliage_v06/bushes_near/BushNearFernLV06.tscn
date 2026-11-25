@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/backgrounds/outdoor/generated_foliage_v06/bushes_near/bush_near_fern_l_v06.png" id="1_tex"]
+
+[node name="BushNearFernLV06" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_tex")
+centered = false
+offset = Vector2(-22, -17)

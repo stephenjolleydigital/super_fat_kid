@@ -1,0 +1,105 @@
+[gd_scene load_steps=16 format=3 uid="uid://dg8soj7lrgo1t"]
+
+[ext_resource type="Script" path="res://scripts/combat/enemy_knockback.gd" id="enemy_knockback"]
+[ext_resource type="Texture2D" uid="uid://cl74q8uobbjkb" path="res://assets/sprites/enemies/bird/bird_poop.png" id="1_d8ku3"]
+[ext_resource type="Script" uid="uid://bb5tgklvxi5fd" path="res://scripts/enemies/bird_poop.gd" id="2_script"]
+[ext_resource type="AudioStream" uid="uid://cjw5j72nj3qy3" path="res://assets/audio/sfx/enemies/bird/sfx_bird_poop_drop_01.wav" id="3_b8rx5"]
+[ext_resource type="AudioStream" uid="uid://bj5psbh00yyt1" path="res://assets/audio/sfx/enemies/bird/sfx_bird_poop_splat_01.wav" id="4_ruv3k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qttfy"]
+atlas = ExtResource("1_d8ku3")
+region = Rect2(0, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6feg"]
+atlas = ExtResource("1_d8ku3")
+region = Rect2(6, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8rx5"]
+atlas = ExtResource("1_d8ku3")
+region = Rect2(12, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruv3k"]
+atlas = ExtResource("1_d8ku3")
+region = Rect2(18, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6l66j"]
+atlas = ExtResource("1_d8ku3")
+region = Rect2(24, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h35nd"]
+atlas = ExtResource("1_d8ku3")
+region = Rect2(30, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dat82"]
+atlas = ExtResource("1_d8ku3")
+region = Rect2(36, 0, 6, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpkjo"]
+atlas = ExtResource("1_d8ku3")
+region = Rect2(42, 0, 6, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_enp72"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qttfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6feg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8rx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruv3k")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6l66j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h35nd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dat82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpkjo")
+}],
+"loop": false,
+"name": &"splat",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_poop"]
+size = Vector2(4, 4)
+
+[node name="BirdPoop" type="Area2D" groups=["enemy_attack"]]
+script = ExtResource("2_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_enp72")
+animation = &"splat"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_poop")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="SFX_Drop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_b8rx5")
+max_distance = 350.0
+
+[node name="SFX_Splat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ruv3k")
+max_distance = 350.0
+
+[node name="EnemyKnockback" type="Node" parent="."]
+script = ExtResource("enemy_knockback")
+damage_areas = Array[NodePath]([NodePath(".")])

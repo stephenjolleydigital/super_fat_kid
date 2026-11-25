@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://1s7sbcb4nro0"]
+
+[ext_resource type="Script" uid="uid://c8fsuih2qmpnf" path="res://scripts/objects/finish_flag.gd" id="1_finish_flag_script"]
+[ext_resource type="SpriteFrames" uid="uid://74i7fhjvb28k" path="res://assets/sprites/objects/flag_finish/flag_finish_frames.tres" id="2_finish_flag_frames"]
+[ext_resource type="AudioStream" uid="uid://c75d5iyugihnq" path="res://assets/audio/sfx/objects/finish_flag/sfx_finish_flag_rise_01.wav" id="3_finish_flag_rise_sfx"]
+[ext_resource type="AudioStream" uid="uid://b17cal1jr0mch" path="res://assets/audio/sfx/objects/finish_flag/sfx_finish_flag_complete_01.wav" id="4_finish_flag_complete_sfx"]
+[ext_resource type="SpriteFrames" uid="uid://birsl78s0ydst" path="res://assets/sprites/objects/flag_finish/flag_confetti_frames.tres" id="5_finish_flag_confetti_frames"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_finish_flag_detector"]
+size = Vector2(80, 120)
+
+[node name="FinishFlag" type="AnimatedSprite2D" groups=["finish_flag"]]
+texture_filter = 1
+sprite_frames = ExtResource("2_finish_flag_frames")
+animation = &"down"
+script = ExtResource("1_finish_flag_script")
+
+[node name="Confetti" type="AnimatedSprite2D" parent="."]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(-14, -42)
+sprite_frames = ExtResource("5_finish_flag_confetti_frames")
+animation = &"burst"
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(24, -31)
+shape = SubResource("RectangleShape2D_finish_flag_detector")
+
+[node name="SFX_Rise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_finish_flag_rise_sfx")
+volume_db = -8.0
+
+[node name="SFX_Complete" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_finish_flag_complete_sfx")
+volume_db = -8.0
+
+[node name="CompleteSFXTimer" type="Timer" parent="."]
+one_shot = true
