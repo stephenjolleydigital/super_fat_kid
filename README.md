@@ -35,6 +35,22 @@ No separate package installation is required. Some abilities are unlocked throug
 - **S / Down**: crouch once unlocked.
 - **Esc**: pause.
 
+### Gamepad controls
+
+Xbox labels are listed first, followed by PlayStation equivalents.
+
+- **Left stick / D-pad**: move and navigate menus.
+- **A / Cross (bottom face button)**: jump; press again for the double jump once unlocked.
+- **RT / R2**: run once unlocked.
+- **X / Square (left face button)**: kick.
+- **RB / R1**: fire the blaster once unlocked.
+- **Left stick down / D-pad Down**: crouch once unlocked.
+- **D-pad Up / left stick up**: enter an arcade cabinet when nearby and carrying a quarter.
+- **Menu / Start / Options**: pause.
+- **A / Cross** or **X / Square**: confirm title-screen selections; **B / Circle**: back from title-screen options.
+
+Abilities that require upgrades follow the same progression as keyboard controls. Arcade minigames have their own controls, shown in the cabinet interface.
+
 ## Explore the code
 
 - `scripts/player/`: player movement, combat, and ability helpers.
@@ -47,7 +63,7 @@ No separate package installation is required. Some abilities are unlocked throug
 
 ## Development and authorship
 
-Created by **Stephen Jolley**, with AI assistance used during development, including help with code and creative assets. The game, artwork, music, and sound effects were created for this project. This is an ongoing learning and development project.
+Created by **Stephen Jolley**. Artwork, music, and sound effects are created manually by Stephen, except for some AI-generated assets used as temporary placeholders. AI assistance is used for coding during development. This is an ongoing learning and development project.
 
 Features, balance, level layouts, and presentation are still evolving. Development scenes and notes are included; not every path has been verified as a finished player experience.
 
