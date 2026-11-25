@@ -6,8 +6,6 @@ This repository is a portfolio snapshot of an actively developed solo game. It i
 
 ![Super Fat Kid title screen](docs/screenshots/title-screen.png)
 
-![Gameplay in the first outdoor level](docs/screenshots/gameplay.png)
-
 ## Gameplay
 
 - Running, jumping, kicking, and a fart-powered double jump.
