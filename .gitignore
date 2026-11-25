@@ -21,3 +21,6 @@ exports/
 *.reapeaks
 Thumbs.db
 .DS_Store
+
+# Local AI project context
+/AI_CONTEXT.md
